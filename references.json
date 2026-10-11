@@ -1,0 +1,30 @@
+{
+  "taali_clap": {
+    "right_elbow": 142.4
+  },
+  "taali_clap\\": {
+    "left_shoulder": 20.9,
+    "right_shoulder": 21.2,
+    "left_elbow": 143.2,
+    "right_hip": 174.1,
+    "right_elbow": 160.6,
+    "left_hip": 174.5
+  },
+  "arms_up": {
+    "left_shoulder": 45.1
+  },
+  "squat_pose": {
+    "left_shoulder": 42.4
+  },
+  "side_step": {
+    "left_shoulder": 37.4
+  },
+  "side_steppython": {
+    "right_hip": 171.0,
+    "left_shoulder": 14.1,
+    "right_shoulder": 20.8,
+    "left_elbow": 142.5,
+    "right_elbow": 142.6,
+    "left_hip": 176.9
+  }
+}
