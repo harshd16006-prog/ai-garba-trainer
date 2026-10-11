@@ -36,17 +36,56 @@ def calc_angle(a, b, c):
     return float(np.degrees(np.arccos(np.clip(cos, -1, 1))))
 
 
+# Tips in 3 languages: English (en), Hindi (hi), Gujarati (gu).
+# Words for the voice coach. Check the Hindi/Gujarati once with a native speaker.
+SIDE = {
+    "left":  {"en": "left",  "hi": "बायाँ", "gu": "ડાબો"},
+    "right": {"en": "right", "hi": "दायाँ", "gu": "જમણો"},
+}
+SIDE_F = {   # feminine form (elbow = kohni / koni)
+    "left":  {"hi": "बायीं", "gu": "ડાબી"},
+    "right": {"hi": "दायीं", "gu": "જમણી"},
+}
+PRAISE = {"en": "Great! Keep going", "hi": "शाबाश! ऐसे ही करते रहो",
+          "gu": "શાબાશ! આમ જ ચાલુ રાખો"}
+
+
 def make_tip(joint, diff):
-    """diff = user angle - reference angle."""
+    """English tip. diff = user angle - reference angle."""
+    return make_tip_i18n(joint, diff)["en"]
+
+
+# Tips in 3 languages (en / hi / gu) so the app can show AND speak them.
+SIDE = {"left":  {"en": "left",  "hi_f": "बायीं", "hi_m": "बायां", "gu_f": "ડાબી",  "gu_m": "ડાબો"},
+        "right": {"en": "right", "hi_f": "दायीं", "hi_m": "दायां", "gu_f": "જમણી", "gu_m": "જમણો"}}
+
+
+def make_tip_i18n(joint, diff):
+    """Returns {"en": ..., "hi": ..., "gu": ...}. diff = user angle - reference angle."""
     side, part = joint.split("_")
     more = diff > 0
+    s = SIDE[side]
     if part == "elbow":
-        return f"{'Bend' if more else 'Straighten'} your {side} elbow"
+        return {
+            "en": f"{'Bend' if more else 'Straighten'} your {s['en']} elbow",
+            "hi": f"{s['hi_f']} कोहनी {'मोड़ो' if more else 'सीधी करो'}",
+            "gu": f"{s['gu_f']} કોણી {'વાળો' if more else 'સીધી કરો'}",
+        }
     if part == "shoulder":
-        return f"{'Lower' if more else 'Raise'} your {side} arm"
+        return {
+            "en": f"{'Lower' if more else 'Raise'} your {s['en']} arm",
+            "hi": f"{s['hi_m']} हाथ {'नीचे करो' if more else 'ऊपर उठाओ'}",
+            "gu": f"{s['gu_m']} હાથ {'નીચે કરો' if more else 'ઉપર ઉઠાવો'}",
+        }
     if part == "knee":
-        return f"{'Bend' if more else 'Straighten'} your {side} knee"
-    return "Bend forward a little" if more else "Stand more upright"
+        return {
+            "en": f"{'Bend' if more else 'Straighten'} your {s['en']} knee",
+            "hi": f"{s['hi_m']} घुटना {'मोड़ो' if more else 'सीधा करो'}",
+            "gu": f"{s['gu_m']} ઘૂંટણ {'વાળો' if more else 'સીધો કરો'}",
+        }
+    if more:
+        return {"en": "Bend forward a little", "hi": "थोड़ा आगे झुको", "gu": "થોડા આગળ નમો"}
+    return {"en": "Stand more upright", "hi": "सीधे खड़े रहो", "gu": "સીધા ઊભા રહો"}
 
 
 def grade(score):
@@ -118,11 +157,16 @@ class GarbaAI:
         score = float(np.mean([max(0, 1 - abs(e) / TOLERANCE) for e in errs.values()]) * 100)
         bad = sorted([j for j, e in errs.items() if abs(e) > WRONG_AT],
                      key=lambda j: -abs(errs[j]))
-        tips = [make_tip(j, errs[j]) for j in bad[:2]]
+        tip_dicts = [make_tip_i18n(j, errs[j]) for j in bad[:2]]
+        tips = [t["en"] for t in tip_dicts]
+        tips_i18n = {lang: [t[lang] for t in tip_dicts] for lang in ("en", "hi", "gu")}
         self.log.append({"t": time.time(), "step": step, "score": score, "wrong": bad})
-        return {"found": True, "step": step, "score": round(score, 1), "grade": grade(score),
-                "wrong": bad, "tips": tips,
-                "angles": {k: round(v, 1) for k, v in ang.items()}}
+        out = {"found": True, "step": step, "score": round(score, 1), "grade": grade(score),
+               "wrong": bad, "tips": tips, "tips_i18n": tips_i18n,
+               "angles": {k: round(v, 1) for k, v in ang.items()}}
+        if not tips and score >= 70:
+            out["praise"] = PRAISE
+        return out
 
     # ---- 4. Performance report ----
     def report(self):

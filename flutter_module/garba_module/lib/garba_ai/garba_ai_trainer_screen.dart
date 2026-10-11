@@ -8,6 +8,7 @@
 import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'garba_ai_api.dart';
 import 'garba_ai_config.dart';
 import 'garba_ai_report_screen.dart';
@@ -31,11 +32,55 @@ class _GarbaAiTrainerScreenState extends State<GarbaAiTrainerScreen> {
   String? _error;
   bool _running = false;
 
+  // ---- voice guidance (English / Hindi / Gujarati) ----
+  final FlutterTts _tts = FlutterTts();
+  String _lang = 'en';
+  bool _voiceOn = true;
+  String _lastSpoken = '';
+  DateTime _lastSpokenAt = DateTime.fromMillisecondsSinceEpoch(0);
+  static const _ttsCodes = {'en': 'en-IN', 'hi': 'hi-IN', 'gu': 'gu-IN'};
+  static const _langNames = {'en': 'English', 'hi': 'हिन्दी', 'gu': 'ગુજરાતી'};
+
   @override
   void initState() {
     super.initState();
     _api = GarbaAiApi(widget.serverUrl ?? GarbaAiConfig.serverUrl);
     _initCameras();
+    _tts.setLanguage(_ttsCodes[_lang]!);
+    _tts.setSpeechRate(0.45);
+  }
+
+  // ---------- voice ----------
+  List<String> _tipsFor(GarbaAiResult? r) {
+    if (r == null) return const [];
+    final t = r.tipsI18n[_lang];
+    return (t != null && t.isNotEmpty) ? t : r.tips;
+  }
+
+  Future<void> _setLang(String lang) async {
+    setState(() => _lang = lang);
+    _lastSpoken = '';
+    try {
+      await _tts.setLanguage(_ttsCodes[lang]!);
+      final ok = await _tts.isLanguageAvailable(_ttsCodes[lang]!);
+      if (!(ok == true || ok == 1) && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('${_langNames[lang]} voice is not installed on this '
+                'phone. Settings > Text-to-speech > install it. Tips will still '
+                'show as text.')));
+      }
+    } catch (_) {}
+  }
+
+  void _maybeSpeak(List<String> tips) {
+    if (!_voiceOn || tips.isEmpty) return;
+    final text = tips.join('. ');
+    final gap = DateTime.now().difference(_lastSpokenAt).inSeconds;
+    if (gap < 3) return; // do not talk non-stop
+    if (text == _lastSpoken && gap < 6) return; // do not repeat too fast
+    _lastSpoken = text;
+    _lastSpokenAt = DateTime.now();
+    _tts.speak(text);
   }
 
   // ---------- camera ----------
@@ -124,6 +169,7 @@ class _GarbaAiTrainerScreenState extends State<GarbaAiTrainerScreen> {
           _result = r;
           _error = null;
         });
+        _maybeSpeak(_tipsFor(r));
       } catch (e) {
         if (!mounted) break;
         setState(() =>
@@ -137,6 +183,7 @@ class _GarbaAiTrainerScreenState extends State<GarbaAiTrainerScreen> {
 
   Future<void> _stop() async {
     setState(() => _running = false);
+    _tts.stop();
     try {
       final report = await _api.report();
       if (!mounted) return;
@@ -194,6 +241,7 @@ class _GarbaAiTrainerScreenState extends State<GarbaAiTrainerScreen> {
   @override
   void dispose() {
     _running = false;
+    _tts.stop();
     _controller?.dispose();
     super.dispose();
   }
@@ -211,6 +259,24 @@ class _GarbaAiTrainerScreenState extends State<GarbaAiTrainerScreen> {
       appBar: AppBar(
         title: const Text('AI Garba Trainer'),
         actions: [
+          PopupMenuButton<String>(
+            tooltip: 'Language',
+            icon: const Icon(Icons.translate),
+            initialValue: _lang,
+            onSelected: _setLang,
+            itemBuilder: (_) => [
+              for (final e in _langNames.entries)
+                PopupMenuItem(value: e.key, child: Text(e.value)),
+            ],
+          ),
+          IconButton(
+            tooltip: _voiceOn ? 'Voice on' : 'Voice off',
+            icon: Icon(_voiceOn ? Icons.volume_up : Icons.volume_off),
+            onPressed: () {
+              setState(() => _voiceOn = !_voiceOn);
+              if (!_voiceOn) _tts.stop();
+            },
+          ),
           IconButton(
             tooltip: 'Switch camera',
             icon: const Icon(Icons.cameraswitch),
@@ -303,7 +369,7 @@ class _GarbaAiTrainerScreenState extends State<GarbaAiTrainerScreen> {
                                 style: const TextStyle(color: Colors.white)),
                           ),
                         ),
-                      for (final tip in (r?.tips ?? const <String>[]))
+                      for (final tip in _tipsFor(r))
                         Card(
                           color: Colors.deepOrange,
                           child: Padding(

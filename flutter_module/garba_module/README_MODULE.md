@@ -23,7 +23,7 @@ ka location badalne par bhi kaam karega.
 ## A) Pehle akele test karo (abhi karna hai)
 
 1. Naya project: `flutter create garba_test` aur `cd garba_test`
-2. `flutter pub add camera http`
+2. `flutter pub add camera http flutter_tts`
 3. Is zip ka `lib/` folder us project ke `lib/` me daalo (main.dart replace hone do).
 4. `lib/garba_ai/garba_ai_config.dart` me apne laptop ka IP daalo (ya app ke andar
    upar wale icon se baad me bhi daal sakte ho).
@@ -34,7 +34,7 @@ ka location badalne par bhi kaam karega.
 
 1. **Folder copy:** `lib/garba_ai/` ko apni app ke `lib/` me copy karo.
    (`main.dart` copy mat karna.)
-2. **Packages:** app ke folder me `flutter pub add camera http`
+2. **Packages:** app ke folder me `flutter pub add camera http flutter_tts`
    (agar already hain to skip).
 3. **Permissions:** neeche wale section se apne `AndroidManifest.xml` me merge karo.
    `minSdk` 24 ya usse upar.
@@ -64,6 +64,19 @@ kuch nahi chahiye.
 android:usesCleartextTraffic="true"
 ```
 `android/app/build.gradle(.kts)` me `minSdk = 24`.
+
+## Voice guidance (English / Hindi / Gujarati)
+
+Camera screen ke upar **translate icon** se bhasha chuno, **speaker icon** se awaaz on/off.
+Python server har tip teeno bhashaon me bhejta hai (`tips_i18n`), app use bolta hai
+(`flutter_tts`). Gujarati/Hindi awaaz ke liye phone me Google Text-to-Speech me wo
+voice install honi chahiye (Settings > Text-to-speech). Android 11+ par
+`AndroidManifest.xml` me `<manifest>` ke andar ye bhi daalo:
+```xml
+<queries>
+  <intent><action android:name="android.intent.action.TTS_SERVICE"/></intent>
+</queries>
+```
 
 ## Server address
 

@@ -8,7 +8,8 @@ class GarbaAiResult {
   final String? step; // which garba pose was recognised
   final double score; // 0 - 100
   final String grade; // Excellent / Good / ...
-  final List<String> tips; // live corrections
+  final List<String> tips; // live corrections (English)
+  final Map<String, List<String>> tipsI18n; // en / hi / gu
   final String message; // problems like "stand in view"
 
   GarbaAiResult({
@@ -17,6 +18,7 @@ class GarbaAiResult {
     required this.score,
     required this.grade,
     required this.tips,
+    required this.tipsI18n,
     required this.message,
   });
 
@@ -26,6 +28,10 @@ class GarbaAiResult {
         score: ((j['score'] ?? 0) as num).toDouble(),
         grade: (j['grade'] ?? '') as String,
         tips: List<String>.from(j['tips'] ?? const []),
+        tipsI18n: {
+          for (final e in ((j['tips_i18n'] ?? const {}) as Map).entries)
+            e.key as String: List<String>.from(e.value as List),
+        },
         message: (j['message'] ?? '') as String,
       );
 }

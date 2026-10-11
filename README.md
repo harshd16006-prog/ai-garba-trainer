@@ -97,7 +97,7 @@ laptop must be on the same network. Quick check from the phone browser:
 | Method | Route | Body / result |
 |---|---|---|
 | GET | `/health` | `{"status":"ok","steps":["taali_clap", ...]}` |
-| POST | `/analyze` | Body `{"image": "<base64 JPEG>"}`. Returns `{"found":true,"step":"taali_clap","score":82.5,"grade":"Good","wrong":["left_elbow"],"tips":["Bend your left elbow"],"angles":{...}}`. If no body: `{"found":false,"message":"Stand fully in view of the camera"}` |
+| POST | `/analyze` | Body `{"image": "<base64 JPEG>"}`. Returns `{"found":true,"step":"taali_clap","score":82.5,"grade":"Good","wrong":["left_elbow"],"tips":["Bend your left elbow"],"tips_i18n":{"en":[...],"hi":[...],"gu":[...]},"angles":{...}}`. If no body: `{"found":false,"message":"Stand fully in view of the camera"}` |
 | GET | `/report` | `{"frames":120,"average_score":74.3,"best_score":96.1,"worst_score":31.0,"grade":"Good","steps_practiced":{...},"weakest_joints":[...]}` |
 | POST | `/reset` | Starts a fresh session (clears the report) |
 
@@ -108,7 +108,7 @@ own HTTP calls, own report screen). All class names start with `GarbaAi`, so the
 should not clash with existing code.
 
 1. Copy `lib/garba_ai/` into the app's `lib/`.
-2. `flutter pub add camera http`
+2. `flutter pub add camera http flutter_tts`
 3. Android: in `AndroidManifest.xml` add
    `<uses-permission android:name="android.permission.CAMERA"/>`,
    `<uses-permission android:name="android.permission.INTERNET"/>`
@@ -123,6 +123,11 @@ Navigator.push(context,
 5. Set the server address in `lib/garba_ai/garba_ai_config.dart`, or inside the app
    with the settings icon on the camera screen (no rebuild needed).
 6. `flutter build apk --release`
+
+The camera screen has a language menu (English / Hindi / Gujarati) and a voice
+on/off button: tips are spoken aloud. The server returns `tips_i18n` with every
+`/analyze` answer. Android 11+ needs a `<queries>` entry for text-to-speech, see
+`README_MODULE.md`.
 
 Full details: `flutter_module/README_MODULE.md`.
 
