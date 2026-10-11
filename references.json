@@ -26,5 +26,318 @@
     "left_elbow": 142.5,
     "right_elbow": 142.6,
     "left_hip": 176.9
-  }
+  },
+  "taali_step": [
+    {
+      "left_elbow": 157.7,
+      "left_shoulder": 18.9,
+      "left_hip": 171.9,
+      "right_hip": 169.9,
+      "left_knee": 165.7,
+      "right_knee": 179.5
+    },
+    {
+      "left_elbow": 87.6,
+      "right_elbow": 75.2,
+      "left_shoulder": 4.1,
+      "right_shoulder": 19.4,
+      "left_hip": 165.7,
+      "right_hip": 177.9,
+      "left_knee": 178.5,
+      "right_knee": 175.1
+    },
+    {
+      "left_elbow": 67.2,
+      "left_shoulder": 11.8,
+      "left_hip": 175.7,
+      "right_hip": 157.6,
+      "left_knee": 168.5,
+      "right_knee": 171.6
+    },
+    {
+      "left_elbow": 150.8,
+      "right_elbow": 65.0,
+      "left_shoulder": 14.3,
+      "right_shoulder": 110.6,
+      "left_hip": 173.8,
+      "right_hip": 174.8,
+      "left_knee": 176.8,
+      "right_knee": 163.4
+    },
+    {
+      "left_elbow": 134.8,
+      "right_elbow": 93.2,
+      "left_shoulder": 22.3,
+      "right_shoulder": 102.1,
+      "left_hip": 174.8,
+      "right_hip": 171.5,
+      "left_knee": 179.0,
+      "right_knee": 171.9
+    },
+    {
+      "left_elbow": 139.1,
+      "right_elbow": 125.3,
+      "left_shoulder": 139.6,
+      "right_shoulder": 152.8,
+      "left_hip": 177.4,
+      "right_hip": 171.6,
+      "left_knee": 174.7,
+      "right_knee": 149.8
+    },
+    {
+      "left_elbow": 147.5,
+      "right_elbow": 176.1,
+      "left_shoulder": 160.3,
+      "right_shoulder": 176.8,
+      "left_hip": 84.9,
+      "right_hip": 84.1,
+      "left_knee": 56.3,
+      "right_knee": 79.3
+    },
+    {
+      "right_elbow": 168.6,
+      "right_shoulder": 177.9,
+      "left_hip": 164.9,
+      "right_hip": 91.2,
+      "left_knee": 35.0,
+      "right_knee": 80.6
+    }
+  ],
+  "dodhiya_step": [
+    {
+      "left_elbow": 125.3,
+      "right_elbow": 102.8,
+      "left_shoulder": 155.4,
+      "right_shoulder": 20.9,
+      "left_hip": 178.7,
+      "right_hip": 157.7,
+      "left_knee": 169.6,
+      "right_knee": 158.6
+    },
+    {
+      "left_elbow": 110.3,
+      "right_elbow": 124.8,
+      "left_shoulder": 19.5,
+      "right_shoulder": 141.5,
+      "left_hip": 140.8,
+      "right_hip": 167.5,
+      "left_knee": 158.5,
+      "right_knee": 175.3
+    },
+    {
+      "left_elbow": 59.4,
+      "right_elbow": 36.1,
+      "left_shoulder": 29.7,
+      "right_shoulder": 29.9,
+      "left_hip": 171.2,
+      "right_hip": 173.3,
+      "left_knee": 173.6,
+      "right_knee": 170.9
+    },
+    {
+      "left_elbow": 105.2,
+      "right_elbow": 94.2,
+      "left_shoulder": 29.1,
+      "right_shoulder": 27.5,
+      "left_hip": 165.5,
+      "right_hip": 177.1,
+      "left_knee": 172.7,
+      "right_knee": 173.9
+    },
+    {
+      "left_elbow": 132.5,
+      "right_elbow": 137.9,
+      "left_shoulder": 27.7,
+      "right_shoulder": 24.8,
+      "left_hip": 172.5,
+      "right_hip": 174.5,
+      "left_knee": 172.0,
+      "right_knee": 172.5
+    },
+    {
+      "left_elbow": 179.1,
+      "right_elbow": 137.2,
+      "left_shoulder": 95.4,
+      "right_shoulder": 96.4,
+      "left_hip": 107.7,
+      "right_hip": 83.4,
+      "left_knee": 146.7,
+      "right_knee": 170.5
+    },
+    {
+      "left_elbow": 177.9,
+      "right_elbow": 171.7,
+      "left_shoulder": 136.7,
+      "right_shoulder": 159.1,
+      "left_hip": 138.6,
+      "right_hip": 112.5,
+      "left_knee": 64.5,
+      "right_knee": 78.0
+    },
+    {
+      "right_elbow": 177.9,
+      "right_shoulder": 160.3,
+      "left_hip": 42.8,
+      "right_hip": 156.8,
+      "left_knee": 137.6,
+      "right_knee": 174.9
+    }
+  ],
+  "easysteps_step": [
+    {
+      "left_elbow": 143.2,
+      "right_elbow": 103.2,
+      "left_shoulder": 32.2,
+      "right_shoulder": 70.9,
+      "left_hip": 170.9,
+      "right_hip": 168.3,
+      "left_knee": 150.1,
+      "right_knee": 158.7
+    },
+    {
+      "left_elbow": 156.7,
+      "left_shoulder": 36.1,
+      "left_hip": 174.5,
+      "right_hip": 160.5,
+      "left_knee": 166.0,
+      "right_knee": 172.5
+    },
+    {
+      "right_elbow": 135.0,
+      "right_shoulder": 26.7,
+      "left_hip": 161.2,
+      "right_hip": 169.0,
+      "left_knee": 155.8,
+      "right_knee": 151.5
+    },
+    {
+      "left_elbow": 85.6,
+      "right_elbow": 147.6,
+      "left_shoulder": 59.3,
+      "right_shoulder": 70.8,
+      "left_hip": 177.5,
+      "right_hip": 172.6,
+      "left_knee": 166.7,
+      "right_knee": 161.3
+    },
+    {
+      "left_elbow": 161.7,
+      "right_elbow": 165.7,
+      "left_shoulder": 125.8,
+      "right_shoulder": 116.3,
+      "left_hip": 167.3,
+      "right_hip": 174.0,
+      "left_knee": 179.6,
+      "right_knee": 151.2
+    },
+    {
+      "left_elbow": 146.2,
+      "right_elbow": 137.4,
+      "left_shoulder": 96.1,
+      "right_shoulder": 89.9,
+      "left_hip": 149.0,
+      "right_hip": 171.6,
+      "left_knee": 134.0,
+      "right_knee": 155.2
+    },
+    {
+      "right_elbow": 175.1,
+      "right_shoulder": 133.8,
+      "left_hip": 158.7,
+      "right_hip": 141.9,
+      "left_knee": 138.9,
+      "right_knee": 168.2
+    },
+    {
+      "left_elbow": 47.1,
+      "right_elbow": 42.2,
+      "left_shoulder": 50.7,
+      "right_shoulder": 69.5,
+      "left_hip": 165.7,
+      "right_hip": 172.4,
+      "left_knee": 168.7,
+      "right_knee": 160.1
+    }
+  ],
+  "dandiya_step": [
+    {
+      "left_elbow": 165.7,
+      "left_shoulder": 29.4,
+      "right_shoulder": 29.9,
+      "left_hip": 174.1,
+      "right_hip": 170.1,
+      "left_knee": 170.3,
+      "right_knee": 172.4
+    },
+    {
+      "left_elbow": 176.0,
+      "right_elbow": 169.2,
+      "left_shoulder": 29.6,
+      "right_shoulder": 21.9,
+      "left_hip": 172.9,
+      "right_hip": 174.6,
+      "left_knee": 174.1,
+      "right_knee": 175.5
+    },
+    {
+      "left_elbow": 87.8,
+      "right_elbow": 77.3,
+      "left_shoulder": 37.4,
+      "right_shoulder": 34.2,
+      "left_hip": 176.1,
+      "right_hip": 169.7,
+      "left_knee": 170.4,
+      "right_knee": 178.9
+    },
+    {
+      "left_elbow": 105.0,
+      "right_elbow": 167.4,
+      "left_shoulder": 42.8,
+      "right_shoulder": 27.4,
+      "left_hip": 178.2,
+      "right_hip": 174.0,
+      "left_knee": 176.0,
+      "right_knee": 172.3
+    },
+    {
+      "left_elbow": 132.6,
+      "right_elbow": 138.0,
+      "left_shoulder": 90.1,
+      "right_shoulder": 110.4,
+      "left_hip": 158.3,
+      "right_hip": 177.8,
+      "left_knee": 174.5,
+      "right_knee": 168.0
+    },
+    {
+      "left_elbow": 130.3,
+      "right_elbow": 103.3,
+      "left_shoulder": 35.6,
+      "right_shoulder": 85.4,
+      "left_hip": 148.7,
+      "right_hip": 180.0,
+      "left_knee": 164.7,
+      "right_knee": 176.7
+    },
+    {
+      "left_elbow": 174.7,
+      "right_elbow": 71.9,
+      "left_shoulder": 29.3,
+      "right_shoulder": 23.5,
+      "left_hip": 175.1,
+      "right_hip": 174.0,
+      "left_knee": 173.5,
+      "right_knee": 177.6
+    },
+    {
+      "left_elbow": 66.7,
+      "right_elbow": 171.8,
+      "left_shoulder": 24.7,
+      "right_shoulder": 22.3,
+      "left_hip": 152.2,
+      "right_hip": 175.1,
+      "left_knee": 169.6,
+      "right_knee": 177.0
+    }
+  ]
 }
